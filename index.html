@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="DotCom Growth — enterprise scale, agency speed, revenue focus. Martech, performance marketing, SEO, demand generation and brand creative from specialist teams."
+    />
+    <title>DotCom Growth — Turn Digital Growth Into Measurable Business Results</title>
+    <style>
+      /* Vanilla motion layer: the page's original layout and content stay untouched. */
+      :root { color-scheme: light; }
+      body, #root, #root > div, main > section { background-color: #fff !important; }
+      body::before { display: none; }
+
+      main > section, footer { position: relative; isolation: isolate; }
+      main > section > :not(.bg):not(.bg-canvas), footer > :not(.bg):not(.bg-canvas) { position: relative; z-index: 1; }
+      .bg, .bg-canvas {
+        position: absolute !important;
+        inset: 0 !important;
+        z-index: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        overflow: hidden !important;
+        pointer-events: none !important;
+      }
+      .bg .wave {
+        position: absolute;
+        bottom: -16px;
+        left: 0;
+        width: 200%;
+        height: 200px;
+        max-width: none;
+        fill: rgba(255, 94, 26, .025);
+        stroke: rgba(255, 94, 26, .115);
+        stroke-width: 1.2px;
+        translate: 0 var(--py, 0px);
+      }
+      .bg .wave-one { animation: wave-one 48s linear infinite; }
+      .bg .wave-two {
+        bottom: 23px;
+        height: 170px;
+        fill: rgba(129, 103, 229, .018);
+        stroke: rgba(96, 82, 183, .095);
+        animation: wave-two 70s linear infinite;
+      }
+      @keyframes wave-one { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+      @keyframes wave-two { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+      .bg .float {
+        position: absolute;
+        border: 1px solid rgba(255, 94, 26, .19);
+        border-radius: 50%;
+        background: rgba(255, 94, 26, .045);
+        translate: 0 var(--py, 0px);
+        animation: float 9s ease-in-out infinite alternate;
+      }
+      .bg .float-one { top: 16%; left: 12%; width: 28px; height: 28px; animation-delay: -1.5s; }
+      .bg .float-two { top: 42%; right: 13%; width: 50px; height: 50px; animation-delay: -4s; }
+      .bg .float-three { bottom: 16%; left: 43%; width: 17px; height: 17px; animation-delay: -6.5s; }
+      .bg .wave, .bg .float { animation-play-state: paused; }
+      .bg-live .bg .wave, .bg-live .bg .float { animation-play-state: running; }
+      @keyframes float {
+        from { transform: translate3d(-6px, 7px, 0); opacity: .5; }
+        to { transform: translate3d(12px, -19px, 0); opacity: .95; }
+      }
+      footer .bg .wave, #engine .on-dark > .bg .wave {
+        fill: rgba(255, 255, 255, .024);
+        stroke: rgba(255, 255, 255, .14);
+      }
+      footer .bg .float, #engine .on-dark > .bg .float {
+        background: rgba(255, 255, 255, .04);
+        border-color: rgba(255, 255, 255, .19);
+      }
+
+      #scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 90;
+        width: 100%;
+        height: 3px;
+        background: #ff5e1a;
+        transform: scaleX(0);
+        transform-origin: left;
+        pointer-events: none;
+      }
+      header.sticky {
+        background: rgba(255, 255, 255, .82) !important;
+        -webkit-backdrop-filter: blur(18px);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid transparent !important;
+        transition: border-color .35s ease, background-color .35s ease;
+      }
+      header.sticky.is-scrolled, header.sticky.border-cream-border { border-bottom-color: #f0e9e1 !important; }
+      .nav-link { position: relative; }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: 3px;
+        left: 16px;
+        right: 16px;
+        height: 1px;
+        background: #ff5e1a;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform .36s cubic-bezier(.2,.7,.2,1);
+      }
+      .nav-link:is(:hover, :focus-visible)::after { transform: scaleX(1); }
+
+      html.fx-ready .rv {
+        opacity: 0;
+        transform: translate3d(0, 36px, 0);
+        transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);
+        transition-delay: var(--rv-delay, 0ms);
+      }
+      html.fx-ready .rv.rv-left { transform: translate3d(-36px, 0, 0); }
+      html.fx-ready .rv.rv-right { transform: translate3d(36px, 0, 0); }
+      html.fx-ready .rv.rv-zoom { transform: translate3d(0, 16px, 0) scale(.94); }
+      html.fx-ready .rv.rv-in { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+      .fx-heading .word-mask {
+        display: inline-block;
+        overflow: hidden;
+        vertical-align: baseline;
+        line-height: inherit;
+        padding-bottom: .12em;
+        margin-bottom: -.12em;
+      }
+      .fx-heading .word-inner {
+        display: inline-block;
+        transform: translate3d(0, 115%, 0);
+        transition: transform .9s cubic-bezier(.2,.7,.2,1);
+        transition-delay: var(--word-delay, 0ms);
+      }
+      .fx-heading.words-in .word-inner { transform: translate3d(0, 0, 0); }
+      .proof-meter { transform: scaleX(0); transform-origin: left; transition: transform 1s cubic-bezier(.2,.7,.2,1); }
+      .proof-meter.meter-in { transform: scaleX(1); }
+
+      @property --a { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+      .fx-card {
+        isolation: isolate;
+        transition: transform .42s cubic-bezier(.2,.7,.2,1), box-shadow .42s ease;
+      }
+      .fx-card:not(.absolute) { position: relative; }
+      .fx-card:is(:hover, :focus-within) {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 40px rgba(12, 23, 84, .12);
+      }
+      .fx-card img { transition: transform .8s cubic-bezier(.2,.7,.2,1) !important; }
+      .fx-card:hover img { transform: scale(1.08) rotate(-2deg) !important; }
+      .fx-card::before, .fx-card::after {
+        content: "";
+        position: absolute;
+        z-index: 5;
+        border-radius: inherit;
+        pointer-events: none;
+      }
+      .fx-v1::after {
+        inset: 0;
+        padding: 2px;
+        opacity: 0;
+        background: conic-gradient(from var(--a), transparent 0deg 265deg, #ff5e1a 303deg, #ffa066 334deg, transparent 359deg);
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        mask-composite: exclude;
+        transition: opacity .25s ease;
+      }
+      .fx-v1:is(:hover, :focus-within)::after { opacity: 1; animation: border-run 2.8s linear infinite; }
+      @keyframes border-run { to { --a: 360deg; } }
+      .fx-v2::before, .fx-v2::after {
+        inset: 0;
+        transition: transform .72s cubic-bezier(.2,.7,.2,1);
+      }
+      .fx-v2::before {
+        border-top: 2px solid #ff5e1a;
+        border-left: 2px solid #ff5e1a;
+        transform: scale(0);
+        transform-origin: top left;
+      }
+      .fx-v2::after {
+        border-bottom: 2px solid #9671e8;
+        border-right: 2px solid #9671e8;
+        transform: scale(0);
+        transform-origin: bottom right;
+      }
+      .fx-v2:is(:hover, :focus-within)::before,
+      .fx-v2:is(:hover, :focus-within)::after { transform: scale(1); }
+      .fx-v3::after {
+        inset: auto 0 0;
+        height: 2px;
+        background: linear-gradient(90deg, #ff5e1a, #ff9254, #ee9389);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform .7s cubic-bezier(.2,.7,.2,1);
+      }
+      .fx-v3:is(:hover, :focus-within)::after { transform: scaleX(1); }
+      .fx-card:is(:hover, :focus-within) .agent-panel { transform: translateY(-6px) rotate(-1deg); }
+      .fx-card:is(:hover, :focus-within) .brandkit-layer-two { transform: translate(6px, -6px) rotate(1deg); }
+
+      .action-button {
+        transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease, background-color .3s ease;
+      }
+      .action-button:is(:hover, :focus-visible) {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 22px rgba(255, 94, 26, .25);
+      }
+      .action-button.text-graphite:hover { background: rgba(255, 94, 26, .08) !important; box-shadow: none; }
+      .action-button:active { transform: translateY(0); }
+      .motion-link { position: relative; }
+      .motion-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -3px;
+        height: 1px;
+        background: currentColor;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform .4s cubic-bezier(.2,.7,.2,1);
+      }
+      .motion-link:is(:hover, :focus-visible)::after { transform: scaleX(1); }
+      .faq-row { position: relative; }
+      .faq-row::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: #ff5e1a;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform .5s cubic-bezier(.2,.7,.2,1);
+      }
+      .faq-row:is(:hover, :focus-within)::after { transform: scaleX(1); }
+      [data-process-fill] { transform: scaleX(0); transform-origin: left; }
+      [data-hero-parallax] { translate: 0 var(--hero-y, 0px); }
+      [data-case-progress] { transition: transform .12s linear; }
+
+      @media (max-width: 768px) {
+        html.fx-ready .rv.rv-left,
+        html.fx-ready .rv.rv-right { transform: translate3d(0, 24px, 0) !important; }
+      }
+      @media (max-width: 620px) {
+        .bg .wave { height: 140px; }
+        .bg .wave-two { height: 120px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto !important; }
+        *, *::before, *::after { animation: none !important; transition: none !important; }
+        .rv, .fx-heading .word-inner { opacity: 1 !important; transform: none !important; }
+        .bg .wave, .bg .float { translate: none !important; transform: none !important; }
+        .fx-card:is(:hover, :focus-within), .fx-card:hover img,
+        .action-button:is(:hover, :focus-visible) { transform: none !important; }
+        [data-process-fill], .proof-meter { transform: scaleX(1) !important; }
+        [data-hero-parallax] { translate: none !important; }
+        #scroll-progress { display: none !important; }
+      }
+    </style>
+    <script>
+      (() => {
+        "use strict";
+
+        const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+        const waveShape = "M0 82 C200 17 400 17 600 82 S1000 147 1200 82 C1400 17 1600 17 1800 82 S2200 147 2400 82 L2400 180 H0Z";
+        const wave = (className) =>
+          `<svg class="wave ${className}" viewBox="0 0 2400 180" preserveAspectRatio="none" aria-hidden="true"><path d="${waveShape}"/></svg>`;
+        const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+        function addBackgrounds(sections) {
+          sections.forEach((section) => {
+            if (section.querySelector(":scope > .bg")) return;
+            section.insertAdjacentHTML(
+              "afterbegin",
+              `<div class="bg" aria-hidden="true">${wave("wave-one")}${wave("wave-two")}` +
+                '<i class="float float-one"></i><i class="float float-two"></i><i class="float float-three"></i></div>',
+            );
+          });
+        }
+
+        function splitHeading(heading) {
+          if (heading.classList.contains("fx-heading")) return;
+          const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
+          const nodes = [];
+          while (walker.nextNode()) {
+            if (walker.currentNode.nodeValue.trim()) nodes.push(walker.currentNode);
+          }
+          let wordIndex = 0;
+          nodes.forEach((node) => {
+            const fragment = document.createDocumentFragment();
+            (node.nodeValue.match(/\S+|\s+/g) || []).forEach((part) => {
+              if (/^\s+$/.test(part)) {
+                fragment.appendChild(document.createTextNode(part));
+                return;
+              }
+              const mask = document.createElement("span");
+              const inner = document.createElement("span");
+              mask.className = "word-mask";
+              inner.className = "word-inner";
+              inner.style.setProperty("--word-delay", `${wordIndex * 70}ms`);
+              inner.textContent = part;
+              mask.appendChild(inner);
+              fragment.appendChild(mask);
+              wordIndex += 1;
+            });
+            node.replaceWith(fragment);
+          });
+          heading.classList.add("fx-heading");
+        }
+
+        function addCardVariants() {
+          const cards = document.querySelectorAll(
+            "#services article, #case-studies article, #testimonials figure, #insights article, " +
+            "#process .process-step, #proof [data-reveal-card], " +
+            "#case-studies [data-reveal-card]:not(article):not(li), #about [data-reveal-card]",
+          );
+          cards.forEach((card, index) => card.classList.add("fx-card", `fx-v${(index % 3) + 1}`));
+        }
+
+        function revealTargets() {
+          const selector = [
+            "main .reveal-hook", "footer .reveal-hook", "main [data-reveal-card]",
+            "main .eyebrow", "main p", "main .action-button", "header .action-button", "main .motion-link",
+            "main li", "footer li", "main .faq-row", "#home dl > div",
+            "main [data-rv-zoom]", "#contact .cta-media-group > div",
+            "#services article > img", "#case-studies article > img", "#insights article img",
+            "#insights article:first-of-type > div", "#why .border-y .container-x .mt-8 > span",
+            "main section[aria-label='Clients'] .container-x .mt-8 > span",
+          ].join(", ");
+          const targets = [...new Set(document.querySelectorAll(selector))];
+          const groupCounts = new Map();
+
+          targets.forEach((el) => {
+            const parent = el.parentElement;
+            const index = groupCounts.get(parent) || 0;
+            groupCounts.set(parent, index + 1);
+            const delay = Math.min(index, 5) * 90;
+            let direction = el.dataset.rvDirection || "up";
+
+            if (
+              el.hasAttribute("data-rv-zoom") ||
+              el.matches("#home dl > div, #proof .grid.gap-px > div, #contact .cta-media-group > div") ||
+              (el.tagName === "IMG" && el.closest("article"))
+            ) direction = "zoom";
+            if (el.matches("#insights article:first-of-type > div:first-child")) direction = "left";
+            if (el.matches("#insights article:first-of-type > div:last-child")) direction = "right";
+
+            el.classList.add("rv", `rv-${direction}`);
+            el.style.setProperty("--rv-delay", `${delay}ms`);
+            el.dataset.rvDelay = String(delay);
+          });
+
+          return targets;
+        }
+
+        function illustration(kind) {
+          const common = 'fill="none" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".55"';
+          const artwork = {
+            chart: `<g ${common}><path d="M105 406V126M105 406h594"/><path d="M137 350 248 290 340 316 455 206 539 236 671 116"/><path d="m632 116 39 0-2 38"/><rect x="180" y="342" width="36" height="64" rx="4"/><rect x="289" y="320" width="36" height="86" rx="4"/><rect x="397" y="281" width="36" height="125" rx="4"/><rect x="504" y="247" width="36" height="159" rx="4"/></g>`,
+            laptop: `<g ${common}><rect x="136" y="112" width="528" height="314" rx="18"/><path d="M102 443h596l-34 24H136z"/><path d="M178 172h443M198 360h422"/><path d="M215 317 304 269 391 292 488 202 575 225"/><circle cx="215" cy="317" r="7" fill="white"/><circle cx="488" cy="202" r="7" fill="white"/></g>`,
+            funnel: `<g ${common}><path d="M146 133h508l-69 73H215zM215 233h370l-69 76H284zM284 335h232l-76 85h-80z"/><path d="M400 420v45m-44 0h88"/><circle cx="400" cy="113" r="14"/><path d="M400 63v24"/></g>`,
+            target: `<g ${common}><circle cx="400" cy="264" r="172"/><circle cx="400" cy="264" r="113"/><circle cx="400" cy="264" r="48"/><path d="m584 81-184 183m123-188 62 5-2 61"/><circle cx="400" cy="264" r="7" fill="white"/></g>`,
+          };
+          const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520"><defs><linearGradient id="g" x2="1" y2="1"><stop stop-color="#0c1754"/><stop offset="1" stop-color="#3447a3"/></linearGradient></defs><rect width="800" height="520" fill="url(#g)"/><path d="M0 460 Q220 370 440 455 T800 400" fill="none" stroke="white" stroke-opacity=".11" stroke-width="2"/>${artwork[kind]}</svg>`;
+          return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+        }
+
+        function bindImageFallbacks() {
+          document.querySelectorAll("img[src^='http']").forEach((image) => {
+            if (image.dataset.fallbackBound) return;
+            image.dataset.fallbackBound = "true";
+            const fallback = () => {
+              if (image.dataset.fallbackApplied) return;
+              image.dataset.fallbackApplied = "true";
+              const context = `${image.alt} ${image.closest("section")?.id || ""}`.toLowerCase();
+              const kind = /parcel|shopping|purchase|marketplace/.test(context) ? "funnel"
+                : /campaign|chart|data|analytics/.test(context) ? "chart"
+                : /laptop|meeting|team|office|consultant/.test(context) ? "laptop" : "target";
+              image.src = illustration(kind);
+              image.classList.add("fallback-illustration");
+            };
+            image.addEventListener("error", fallback, { once: true });
+            if (image.complete && image.naturalWidth === 0) fallback();
+          });
+        }
+
+        function init() {
+          const sections = [...document.querySelectorAll("main > section, footer")];
+          const panels = [
+            document.querySelector("#engine .on-dark"),
+            document.querySelector("#contact > .container-x > div"),
+          ].filter(Boolean);
+          const scenes = [...sections, ...panels];
+          addBackgrounds(scenes);
+          addCardVariants();
+          bindImageFallbacks();
+
+          if ("IntersectionObserver" in window) {
+            const sceneObserver = new IntersectionObserver((entries) => {
+              entries.forEach(({ target, isIntersecting }) => target.classList.toggle("bg-live", isIntersecting));
+            }, { rootMargin: "200px 0px" });
+            scenes.forEach((scene) => sceneObserver.observe(scene));
+          } else {
+            scenes.forEach((scene) => scene.classList.add("bg-live"));
+          }
+
+          const progress = document.createElement("div");
+          progress.id = "scroll-progress";
+          progress.setAttribute("aria-hidden", "true");
+          document.body.appendChild(progress);
+
+          const headings = [...document.querySelectorAll("main h1, main h2")];
+          const targets = motionPreference.matches ? [] : revealTargets();
+          if (!motionPreference.matches) headings.forEach(splitHeading);
+
+          let revealObserver;
+          let headingObserver;
+          let meterObserver;
+          if (!motionPreference.matches && "IntersectionObserver" in window) {
+            revealObserver = new IntersectionObserver((entries) => {
+              entries.forEach(({ target, isIntersecting }) => {
+                if (!isIntersecting) return;
+                revealObserver.unobserve(target);
+                const delay = Number(target.dataset.rvDelay) || 0;
+                target.classList.add("rv-in");
+                window.setTimeout(() => {
+                  target.classList.remove("rv", "rv-in", "rv-left", "rv-right", "rv-zoom");
+                  target.style.removeProperty("--rv-delay");
+                  delete target.dataset.rvDelay;
+                }, delay + 960);
+              });
+            }, { threshold: .15 });
+
+            headingObserver = new IntersectionObserver((entries) => {
+              entries.forEach(({ target, isIntersecting }) => {
+                if (!isIntersecting) return;
+                target.classList.add("words-in");
+                headingObserver.unobserve(target);
+              });
+            }, { threshold: .15 });
+
+            meterObserver = new IntersectionObserver((entries) => {
+              entries.forEach(({ target, isIntersecting }) => {
+                if (!isIntersecting) return;
+                target.classList.add("meter-in");
+                meterObserver.unobserve(target);
+              });
+            }, { threshold: .15 });
+
+            targets.forEach((el) => revealObserver.observe(el));
+            headings.forEach((el) => headingObserver.observe(el));
+            document.querySelectorAll(".proof-meter").forEach((el) => meterObserver.observe(el));
+            document.documentElement.classList.add("fx-ready");
+          } else {
+            targets.forEach((el) => el.classList.remove("rv", "rv-left", "rv-right", "rv-zoom"));
+            headings.forEach((el) => el.classList.add("words-in"));
+            document.querySelectorAll(".proof-meter").forEach((el) => el.classList.add("meter-in"));
+          }
+
+          const header = document.querySelector("header.sticky");
+          const hero = document.querySelector("[data-hero-parallax]");
+          const processTrack = document.querySelector("[data-process-track]");
+          const processFill = document.querySelector("[data-process-fill]");
+          const caseScroller = document.querySelector("#case-studies .overflow-x-auto");
+          const caseProgress = document.querySelector("[data-case-progress]");
+          let ticking = false;
+
+          function renderScroll() {
+            ticking = false;
+            const y = window.scrollY || document.documentElement.scrollTop;
+            const total = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+            header?.classList.toggle("is-scrolled", y > 8);
+            if (motionPreference.matches) return;
+
+            progress.style.transform = `scaleX(${clamp(y / total, 0, 1)})`;
+            if (hero) hero.style.setProperty("--hero-y", `${clamp(-.06 * y, -60, 0)}px`);
+            sections.forEach((section) => {
+              const bounds = section.getBoundingClientRect();
+              if (bounds.bottom < -300 || bounds.top > window.innerHeight + 300) return;
+              const distance = bounds.top + bounds.height / 2 - window.innerHeight / 2;
+              section.style.setProperty("--py", `${clamp(-distance * .035, -26, 26).toFixed(1)}px`);
+            });
+
+            if (processTrack && processFill) {
+              const box = processTrack.getBoundingClientRect();
+              const drawn = clamp((window.innerHeight * .83 - box.top) / (box.height + window.innerHeight * .22), 0, 1);
+              processFill.style.transform = `scaleX(${drawn})`;
+            }
+            if (caseScroller && caseProgress) {
+              const maxScroll = Math.max(1, caseScroller.scrollWidth - caseScroller.clientWidth);
+              caseProgress.style.transform = `translateX(${(caseScroller.scrollLeft / maxScroll) * 284.6}%)`;
+            }
+          }
+
+          function scheduleScroll() {
+            if (ticking) return;
+            ticking = true;
+            window.requestAnimationFrame(renderScroll);
+          }
+
+          window.addEventListener("scroll", scheduleScroll, { passive: true });
+          window.addEventListener("resize", scheduleScroll, { passive: true });
+          caseScroller?.addEventListener("scroll", scheduleScroll, { passive: true });
+          window.addEventListener("load", scheduleScroll, { once: true });
+          scheduleScroll();
+
+          // Future images added by the existing interactive UI get the same fallback.
+          const imageObserver = new MutationObserver(bindImageFallbacks);
+          imageObserver.observe(document.getElementById("root"), { childList: true, subtree: true });
+        }
+
+        function waitForPage() {
+          const ready = () => document.querySelector("#contact") && document.querySelector("footer");
+          if (ready()) { init(); return; }
+          const root = document.getElementById("root");
+          if (!root) return;
+          const observer = new MutationObserver(() => {
+            if (!ready()) return;
+            observer.disconnect();
+            init();
+          });
+          observer.observe(root, { childList: true, subtree: true });
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", waitForPage, { once: true });
+        } else {
+          waitForPage();
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

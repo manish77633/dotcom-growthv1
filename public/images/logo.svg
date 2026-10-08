@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 48" fill="none">
+  <text x="0" y="36" font-family="'Inter Tight', 'Inter', system-ui, -apple-system, sans-serif" font-weight="900" font-size="34" letter-spacing="-0.04em" fill="#ff5e1a">dotcom</text>
+  <text x="122" y="36" font-family="'Inter Tight', 'Inter', system-ui, -apple-system, sans-serif" font-weight="900" font-size="34" letter-spacing="-0.04em" fill="#171417">Gr</text>
+  <circle cx="177" cy="24" r="14" fill="#171417"/>
+  <path d="M177 14.5L171 20.5H174.5V29.5H179.5V20.5H183L177 14.5Z" fill="#ff5e1a"/>
+  <text x="195" y="36" font-family="'Inter Tight', 'Inter', system-ui, -apple-system, sans-serif" font-weight="900" font-size="34" letter-spacing="-0.04em" fill="#171417">wth</text>
+</svg>

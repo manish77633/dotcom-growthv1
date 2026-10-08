@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+/* Existing type system and layout styles; motion CSS is in index.html. */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2") format("woff2-variations");
+}
+@font-face {
+  font-family: "Inter Tight";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("../node_modules/@fontsource-variable/inter-tight/files/inter-tight-latin-wght-normal.woff2") format("woff2-variations");
+}
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url("../node_modules/@fontsource-variable/newsreader/files/newsreader-latin-wght-normal.woff2") format("woff2-variations");
+}
+@font-face {
+  font-family: "Newsreader";
+  font-style: italic;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url("../node_modules/@fontsource-variable/newsreader/files/newsreader-latin-wght-italic.woff2") format("woff2-variations");
+}
+
+@theme {
+  --color-ink-navy: #0c1754;
+  --color-electric-cobalt: #ff5e1a;
+  --color-charcoal: #171417;
+  --color-warm-canvas: #f9f8f6;
+  --color-paper-white: #ffffff;
+  --color-cream-border: #f0e9e1;
+  --color-graphite: #222222;
+  --color-stone: #969696;
+  --color-smoke: #cccccc;
+  --color-lavender-mist: #fff0e8;
+
+  --font-serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-abc: "Inter Tight", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius-card: 16px;
+  --radius-image: 24px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+  }
+  body {
+    background: var(--color-warm-canvas);
+    color: var(--color-charcoal);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    font-feature-settings: "ss01", "ss04";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  section[id] {
+    scroll-margin-top: 72px;
+  }
+  ::selection {
+    background: var(--color-electric-cobalt);
+    color: #fff;
+  }
+  button {
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 1248px;
+    margin-inline: auto;
+    padding-inline: 16px;
+  }
+  @media (min-width: 640px) {
+    .container-x {
+      padding-inline: 24px;
+    }
+  }
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-charcoal);
+  }
+  .h-display {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.028em;
+    line-height: 1.04;
+    color: var(--color-charcoal);
+  }
+  .h-display em {
+    font-style: italic;
+    color: var(--color-ink-navy);
+    letter-spacing: -0.032em;
+  }
+  .on-dark .h-display,
+  .h-display.on-dark {
+    color: #fff;
+  }
+  .on-dark .h-display em,
+  .h-display.on-dark em {
+    color: #fff;
+  }
+  .h-abc {
+    font-family: var(--font-abc);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .hide-scrollbar {
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hero interactive dot background directly on section */
+  .hero-dots-base {
+    background-image: radial-gradient(circle, rgba(255, 94, 26, 0.30) 1.5px, transparent 1.5px);
+    background-size: 26px 26px;
+    background-position: center top;
+  }
+  .hero-dots-spotlight {
+    background-image: radial-gradient(circle, #ff5e1a 2.5px, transparent 2.5px);
+    background-size: 26px 26px;
+    background-position: center top;
+    -webkit-mask-image: radial-gradient(circle 280px at var(--mouse-x, 50%) var(--mouse-y, 220px), #000 0%, rgba(0, 0, 0, 0.45) 50%, transparent 100%);
+    mask-image: radial-gradient(circle 280px at var(--mouse-x, 50%) var(--mouse-y, 220px), #000 0%, rgba(0, 0, 0, 0.45) 50%, transparent 100%);
+  }
+  .hero-dots-glow {
+    background: radial-gradient(circle 360px at var(--mouse-x, 50%) var(--mouse-y, 220px), rgba(255, 94, 26, 0.12) 0%, rgba(255, 94, 26, 0.03) 55%, transparent 100%);
+  }
+}
