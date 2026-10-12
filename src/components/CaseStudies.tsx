@@ -64,7 +64,7 @@ export default function CaseStudies() {
     });
 
   return (
-    <section id="case-studies" className="pb-24 md:pb-32">
+    <section id="case-studies" className="py-12 md:py-16">
       <SectionTexture motif="orbits" side="left" />
       <div className="container-x">
         <SectionHead

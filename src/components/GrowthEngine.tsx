@@ -58,7 +58,7 @@ export default function GrowthEngine() {
   };
 
   return (
-    <section id="engine" className="pb-24 md:pb-32">
+    <section id="engine" className="py-12 md:py-16">
       <SectionTexture motif="dots" side="left" />
       <div className="container-x">
         <div className="on-dark relative overflow-hidden rounded-[24px] sm:rounded-[28px] bg-ink-navy bg-[radial-gradient(900px_500px_at_100%_0%,rgba(255,94,26,0.35),transparent_60%),radial-gradient(600px_400px_at_0%_100%,rgba(255,142,66,0.18),transparent_60%)] p-4.5 xs:p-6 sm:p-10 lg:p-14">

@@ -26,7 +26,7 @@ const items = [
 
 export default function Why() {
   return (
-    <section id="why" className="pb-24 md:pb-32">
+    <section id="why" className="py-12 md:py-16">
       <SectionTexture motif="waves" side="left" />
       <div className="container-x">
         <SectionHead

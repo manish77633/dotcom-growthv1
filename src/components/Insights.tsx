@@ -30,7 +30,7 @@ const small = [
 
 export default function Insights() {
   return (
-    <section id="insights" className="pb-24 md:pb-32">
+    <section id="insights" className="py-12 md:py-16">
       <SectionTexture motif="orbits" side="left" />
       <div className="container-x">
         <SectionHead

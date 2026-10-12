@@ -20,7 +20,7 @@ function reply(q: string): string {
 }
 
 export default function ChatWidget() {
-  const [open, setOpen] = useState(() => typeof window !== "undefined" && window.innerWidth >= 1024);
+  const [open, setOpen] = useState(false);
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [text, setText] = useState("");
   const endRef = useRef<HTMLDivElement>(null);

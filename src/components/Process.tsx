@@ -37,7 +37,7 @@ const steps = [
 
 export default function Process() {
   return (
-    <section id="process" className="pb-24 md:pb-32">
+    <section id="process" className="py-12 md:py-16">
       <SectionTexture motif="waves" side="right" />
       <div className="container-x">
         <SectionHead

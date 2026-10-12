@@ -6,7 +6,7 @@ import { img } from "../data";
 
 export default function FinalCTA() {
   return (
-    <section id="contact" className="pb-24 md:pb-32">
+    <section id="contact" className="pb-24 pt-12 md:pb-32 md:pt-16">
       <SectionTexture motif="waves" side="right" />
       <div className="container-x">
         <div className="relative overflow-hidden rounded-[28px] border border-cream-border bg-white">

@@ -132,6 +132,23 @@
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
+  #about .rv {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  #about .fx-heading .word-inner {
+    transform: none !important;
+  }
+  .capabilities-surface {
+    background-image:
+      radial-gradient(ellipse 52% 390px at 96% 2%, rgba(255, 94, 26, 0.09), transparent 78%),
+      radial-gradient(ellipse 42% 520px at 4% 36%, rgba(12, 23, 84, 0.045), transparent 80%),
+      linear-gradient(180deg, #fff 0%, #fdfbf9 60%, #fff 100%);
+  }
+  #services .h-display {
+    line-height: 1.16;
+    padding-bottom: 0.12em;
+  }
 
   /* Hero interactive dot background directly on section */
   .hero-dots-base {

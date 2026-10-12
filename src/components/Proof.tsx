@@ -29,7 +29,7 @@ const outcome = ["P&L contribution", "Efficiency", "Pipeline velocity"];
 
 export default function Proof() {
   return (
-    <section id="proof" className="pb-24 md:pb-32">
+    <section id="proof" className="py-12 md:py-16">
       <SectionTexture motif="grid" side="right" />
       <div className="container-x">
         <SectionHead

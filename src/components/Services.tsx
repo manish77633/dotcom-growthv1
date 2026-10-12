@@ -148,7 +148,7 @@ function BrandCreativeShowcase() {
             <span className="text-[11px] sm:text-[12px] text-stone truncate">· {active.tagline}</span>
           </div>
           <span className="self-start sm:self-auto rounded-full bg-lavender-mist px-2.5 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.08em] text-ink-navy shrink-0">
-            Live Campaign System
+            Illustrative concept
           </span>
         </div>
 
@@ -175,7 +175,7 @@ function BrandCreativeShowcase() {
           ))}
         </div>
 
-        {/* Real Performance Metrics */}
+        {/* Illustrative performance metrics; replace with verified client figures before publishing as results. */}
         <div className="mt-4 sm:mt-6 grid grid-cols-3 gap-1.5 sm:gap-3 border-t border-cream-border pt-3 sm:pt-5 text-left">
           {active.metrics.map((m) => (
             <div key={m.label} className="min-w-0 rounded-lg sm:rounded-xl bg-warm-canvas/60 p-1.5 xs:p-2 sm:p-3 text-center sm:text-left">
@@ -230,7 +230,7 @@ function SmallCard({ label, title, text }: { label: string; title: string; text:
 
 export default function Services() {
   return (
-    <section id="services" className="pb-24 md:pb-32">
+    <section id="services" className="capabilities-surface border-t border-cream-border/70 pb-12 pt-20 md:pb-16 md:pt-28">
       <SectionTexture motif="grid" side="left" className="texture-long" />
       <div className="container-x">
         <SectionHead

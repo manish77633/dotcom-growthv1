@@ -29,7 +29,7 @@ const quotes = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="pb-24 md:pb-32">
+    <section id="testimonials" className="py-12 md:py-16">
       <SectionTexture motif="dots" side="right" />
       <div className="container-x">
         <SectionHead

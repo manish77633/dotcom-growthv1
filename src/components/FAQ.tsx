@@ -31,7 +31,7 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="pb-24 md:pb-32">
+    <section id="faq" className="py-12 md:py-16">
       <SectionTexture motif="grid" side="left" />
       <div className="container-x grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-20">
         <div className="lg:sticky lg:top-28 lg:self-start">
