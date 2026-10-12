@@ -13,6 +13,14 @@ const stats = [
   { n: "3", l: "dedicated specialist hubs" },
 ];
 
+const tabImages: Record<TabKey, { src: string; alt: string }> = {
+  campaigns: { src: img.perf, alt: "Team reviewing campaign performance and marketing results" },
+  funnel: { src: img.hero, alt: "Marketing team discussing the customer journey around a conference table" },
+  leads: { src: img.insightA, alt: "Team working on lead generation and customer outreach" },
+  automation: { src: img.ai, alt: "Analyst working with marketing technology and automated workflows" },
+  growth: { src: img.about, alt: "Team collaborating on a business growth strategy" },
+};
+
 export default function Hero() {
   const [tab, setTab] = useState<TabKey>("campaigns");
 
@@ -105,8 +113,9 @@ export default function Hero() {
             <div className="relative h-[180px] xs:h-[220px] sm:h-[280px] md:h-auto md:aspect-[16/10] lg:aspect-[2/1] overflow-hidden rounded-xl sm:rounded-2xl border-2 sm:border-[4px] md:border-[6px] border-white bg-lavender-mist">
               <div data-hero-parallax className="absolute -inset-y-[32px] inset-x-0 md:-inset-y-[72px]">
                 <Photo
-                  src={img.hero}
-                  alt="A marketing team reviewing campaign strategy around a conference table"
+                  key={tab}
+                  src={tabImages[tab].src}
+                  alt={tabImages[tab].alt}
                   className="size-full object-[50%_40%]"
                 />
               </div>

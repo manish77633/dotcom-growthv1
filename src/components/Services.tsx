@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from "react";
-import { ArrowDown, ArrowRight, X } from "lucide-react";
-import { Button, Photo, SectionHead, Tag, TextLink } from "./ui";
+import { ArrowDown, ArrowRight, ChartNoAxesCombined, CircuitBoard, Search, X } from "lucide-react";
+import { Button, Photo, SectionHead, TextLink } from "./ui";
 import { AutomationPanel, CrmSyncMock, DashboardCard } from "./mocks";
 import { SectionTexture } from "./MotionLayer";
 import { img } from "../data";
@@ -203,14 +203,23 @@ function BrandCreativeShowcase() {
 }
 
 function SmallCard({ label, title, text }: { label: string; title: string; text: string }) {
+  const visual = label === "SEO & content"
+    ? { icon: Search, tone: "from-[#fff4e9] via-white to-white", accent: "text-electric-cobalt/15" }
+    : label === "Analytics & attribution"
+      ? { icon: ChartNoAxesCombined, tone: "from-[#eef2ff] via-white to-white", accent: "text-ink-navy/12" }
+      : { icon: CircuitBoard, tone: "from-[#eef8f5] via-white to-white", accent: "text-[#338979]/15" };
+  const Icon = visual.icon;
   return (
-    <Card className="flex min-h-[210px] sm:min-h-[250px] flex-col justify-between bg-white p-6 sm:p-8 transition-colors hover:border-ink-navy/20">
-      <div>
-        <h3 className="h-abc text-[20px] sm:text-[24px] text-charcoal">{title}</h3>
+    <Card className={cn("flex min-h-[230px] sm:min-h-[270px] flex-col justify-between bg-gradient-to-br p-6 sm:p-8 transition-colors hover:border-ink-navy/20", visual.tone)}>
+      <div aria-hidden="true" className="pointer-events-none absolute -bottom-8 -right-5 size-48 rounded-full border border-ink-navy/5" />
+      <Icon aria-hidden="true" strokeWidth={1} className={cn("pointer-events-none absolute -bottom-5 -right-3 size-40 rotate-[-12deg]", visual.accent)} />
+      <div className="relative z-10">
+        <h3 className="font-abc text-[24px] sm:text-[28px] font-semibold leading-tight text-ink-navy">{label}</h3>
+        <p className="mt-2 font-abc text-[17px] sm:text-[19px] font-medium leading-snug text-charcoal">{title}</p>
         <p className="mt-2.5 sm:mt-3 text-[14px] sm:text-[15px] leading-[1.6] text-graphite/70">{text}</p>
       </div>
-      <div className="mt-6 sm:mt-8 flex items-center justify-between">
-        <span className="eyebrow text-[10.5px] sm:text-[11px] text-stone">{label}</span>
+      <div className="relative z-10 mt-6 sm:mt-8 flex items-center justify-between">
+        <span className="text-[12px] font-medium text-stone">Discuss this service</span>
         <span className="flex size-8 items-center justify-center rounded-full border border-cream-border text-ink-navy transition-colors group-hover:bg-ink-navy group-hover:text-white">
           <ArrowRight className="size-4" />
         </span>
@@ -228,7 +237,7 @@ export default function Services() {
           eyebrow="Capabilities"
           title={
             <>
-              Capabilities engineered for <em>compounding</em> growth
+              Services built for <em>measurable growth</em>
             </>
           }
           sub="Technology is only valuable when it creates measurable business outcomes. We engineer systems that directly impact operations, revenue and growth."
@@ -249,7 +258,8 @@ export default function Services() {
             />
             <div className="absolute inset-0 bg-gradient-to-b from-white via-white/85 to-transparent md:bg-gradient-to-r md:from-white md:via-white/80 md:to-transparent" />
             <div className="relative z-10 max-w-[440px] lg:absolute lg:left-10 lg:top-10">
-              <h3 className="h-abc text-[22px] xs:text-[26px] sm:text-[32px] lg:text-[38px]">Paid media that answers to pipeline, not impressions.</h3>
+              <h3 className="font-abc text-[28px] font-semibold leading-tight text-ink-navy sm:text-[36px] lg:text-[42px]">Performance marketing</h3>
+              <p className="mt-2 font-abc text-[19px] font-medium leading-snug text-charcoal sm:text-[23px]">Paid media that answers to pipeline, not impressions.</p>
               <p className="mt-3 sm:mt-4 text-[14.5px] sm:text-[16px] leading-[1.6] text-graphite/75">
                 Google, Meta and LinkedIn campaigns, conversion-rate optimization and revenue attribution — managed by
                 a dedicated performance hub. Ad spend optimization, tied to the P&amp;L.
@@ -258,7 +268,6 @@ export default function Services() {
                 Explore performance marketing
               </TextLink>
               <div className="mt-6 flex flex-wrap items-center gap-2.5 lg:hidden">
-                <Tag>Performance marketing</Tag>
                 <div className="inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 text-[11px] font-medium text-ink-navy shadow-[0_4px_24px_rgba(12,23,84,0.12)]">
                   <span className="size-2 rounded-full bg-ink-navy" /> Google
                   <span className="ml-1 size-2 rounded-full bg-electric-cobalt" /> Meta
@@ -266,7 +275,6 @@ export default function Services() {
                 </div>
               </div>
             </div>
-            <Tag className="absolute bottom-6 left-6 hidden sm:bottom-8 sm:left-10 lg:inline-flex">Performance marketing</Tag>
             <div className="absolute bottom-6 right-6 hidden items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-[12px] font-medium text-ink-navy shadow-[0_4px_24px_rgba(12,23,84,0.12)] md:inline-flex sm:bottom-8 sm:right-8">
               <span className="size-2 rounded-full bg-ink-navy" /> Google
               <span className="ml-2 size-2 rounded-full bg-electric-cobalt" /> Meta
@@ -277,15 +285,17 @@ export default function Services() {
           {/* 2 — Automation + CRM */}
           <div className="grid gap-4 lg:grid-cols-[2fr_1fr]">
             <Card reveal="slide" className="flex flex-col gap-6 sm:gap-8 bg-[linear-gradient(135deg,#fff1ea_0%,#ffffff_70%)] p-5 sm:p-8 lg:block lg:min-h-[440px] lg:p-0">
-              <Tag className="self-start lg:absolute lg:left-8 lg:top-8" tone="mist">Marketing automation</Tag>
-              <div className="lg:absolute lg:bottom-8 lg:left-8 lg:max-w-[300px]">
-                <h3 className="h-abc text-[22px] sm:text-[28px]">Automate the lifecycle, from first click to hand-off.</h3>
+              <Photo src={img.insightC} alt="" className="pointer-events-none absolute inset-0 size-full opacity-85" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#fff6ef]/95 via-white/65 to-white/20" />
+              <h3 className="relative self-start font-abc text-[26px] font-semibold leading-tight text-ink-navy sm:text-[30px] lg:absolute lg:left-8 lg:top-8">Marketing automation</h3>
+              <div className="relative lg:absolute lg:bottom-8 lg:left-8 lg:max-w-[300px]">
+                <p className="font-abc text-[20px] font-medium leading-snug text-charcoal sm:text-[24px]">Automate the lifecycle, from first click to hand-off.</p>
                 <p className="mt-2.5 sm:mt-3 text-[14px] sm:text-[15px] leading-[1.6] text-graphite/70">
                   Scoring, routing and nurture built around your funnel — streamlining lead lifecycles so nothing
                   waits on a manual step.
                 </p>
               </div>
-              <div className="w-full lg:absolute lg:right-[-24px] lg:top-8 lg:w-[54%]">
+              <div className="relative w-full lg:absolute lg:right-[-24px] lg:top-8 lg:w-[54%]">
                 <div className="rounded-2xl border border-cream-border bg-white p-4 sm:p-5 shadow-[0_4px_24px_rgba(12,23,84,0.08)]">
                   <AutomationPanel />
                 </div>
@@ -293,10 +303,12 @@ export default function Services() {
             </Card>
 
             <Card className="flex flex-col justify-between gap-6 sm:gap-8 bg-white p-5 sm:p-8 lg:min-h-[440px]">
-              <Tag tone="mist" className="self-start">CRM integration</Tag>
-              <CrmSyncMock />
-              <div>
-                <h3 className="h-abc text-[20px] sm:text-[26px]">One source of truth for every lead.</h3>
+              <Photo src={img.insightB} alt="" className="pointer-events-none absolute inset-0 size-full opacity-75" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/85 via-white/45 to-white/90" />
+              <h3 className="relative self-start font-abc text-[26px] font-semibold leading-tight text-ink-navy sm:text-[30px]">CRM integration</h3>
+              <div className="relative"><CrmSyncMock /></div>
+              <div className="relative">
+                <p className="font-abc text-[19px] font-medium leading-snug text-charcoal sm:text-[22px]">One source of truth for every lead.</p>
                 <p className="mt-2 text-[14px] sm:text-[15px] leading-[1.6] text-graphite/70">
                   Unified data systems that put sales and marketing on the same numbers.
                 </p>
@@ -316,8 +328,8 @@ export default function Services() {
               <AiAgentCard />
             </div>
             <div className="relative z-10 text-white lg:absolute lg:bottom-10 lg:left-auto lg:right-10 lg:max-w-[420px]">
-              <Tag tone="glass" className="mb-4 inline-block lg:absolute lg:left-auto lg:-top-12 lg:right-0">AI &amp; Martech</Tag>
-              <h3 className="h-abc text-[22px] xs:text-[26px] sm:text-[30px] lg:text-[36px]">Intelligent workflow automation, not another dashboard.</h3>
+              <h3 className="mb-3 font-abc text-[28px] font-semibold leading-tight text-white sm:text-[36px]">AI &amp; Martech</h3>
+              <p className="font-abc text-[19px] font-medium leading-snug text-white sm:text-[23px]">Intelligent workflow automation, not another dashboard.</p>
               <p className="mt-2.5 sm:mt-3 text-[14px] sm:text-[15px] leading-[1.6] text-white/80">
                 Custom LLM configurations, cognitive automation pipelines and RAG systems — plus agentic AI that
                 orchestrates tasks and decisions across your operations.
@@ -331,8 +343,10 @@ export default function Services() {
           {/* 4 — Transformation (dark) + Demand gen (wide) */}
           <div className="grid gap-4 lg:grid-cols-[1fr_2fr]">
             <Card reveal="slide" className="trace-border--dark flex flex-col justify-between gap-6 sm:gap-8 border-ink-navy bg-ink-navy p-5 sm:p-8 text-white lg:min-h-[440px]">
-              <Tag tone="glass" className="self-start">Digital transformation</Tag>
-              <div className="rounded-2xl border border-white/15 bg-white/10 p-4">
+              <Photo src={img.caseRealEstate} alt="" className="pointer-events-none absolute inset-0 size-full opacity-75" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink-navy/65 via-ink-navy/55 to-ink-navy/90" />
+              <h3 className="relative self-start font-abc text-[26px] font-semibold leading-tight text-white sm:text-[30px]">Digital transformation</h3>
+              <div className="relative rounded-2xl border border-white/15 bg-white/10 p-4">
                 <div className="text-[10.5px] sm:text-[11px] font-bold uppercase tracking-[0.1em] text-white/60">Architecture</div>
                 <div className="mt-3 space-y-2 text-[12px]">
                   <div className="flex items-center gap-3">
@@ -350,8 +364,8 @@ export default function Services() {
                   </div>
                 </div>
               </div>
-              <div>
-                <h3 className="h-abc text-[20px] sm:text-[26px]">Modernize the core, then scale on top of it.</h3>
+              <div className="relative">
+                <p className="font-abc text-[19px] font-medium leading-snug text-white sm:text-[22px]">Modernize the core, then scale on top of it.</p>
                 <p className="mt-2 text-[14px] sm:text-[15px] leading-[1.6] text-white/70">
                   Legacy architectures and operating methods rebuilt for the market you're growing into.
                 </p>
@@ -359,10 +373,12 @@ export default function Services() {
             </Card>
 
             <Card className="flex flex-col gap-6 sm:gap-8 bg-white p-5 sm:p-8 lg:grid lg:min-h-[440px] lg:grid-cols-[1fr_1fr] lg:items-center">
-              <div className="flex h-full flex-col justify-between gap-6 sm:gap-8">
-                <Tag tone="mist" className="self-start">Demand generation</Tag>
+              <Photo src={img.insightA} alt="" className="pointer-events-none absolute inset-0 size-full opacity-85" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white/95 via-white/65 to-lavender-mist/20" />
+              <div className="relative flex h-full flex-col justify-between gap-6 sm:gap-8">
+                <h3 className="self-start font-abc text-[26px] font-semibold leading-tight text-ink-navy sm:text-[30px]">Demand generation</h3>
                 <div>
-                  <h3 className="h-abc text-[22px] sm:text-[28px]">Pipelines built for B2B buying cycles.</h3>
+                  <p className="font-abc text-[20px] font-medium leading-snug text-charcoal sm:text-[24px]">Pipelines built for B2B buying cycles.</p>
                   <p className="mt-2.5 sm:mt-3 text-[14px] sm:text-[15px] leading-[1.6] text-graphite/70">
                     Always-on programs across paid, organic and lifecycle — building scalable pipelines from target
                     accounts to qualified opportunities.
@@ -372,7 +388,7 @@ export default function Services() {
                   </TextLink>
                 </div>
               </div>
-              <div className="rounded-2xl bg-lavender-mist/70 p-2.5 sm:p-3">
+              <div className="relative rounded-2xl bg-lavender-mist/80 p-2.5 sm:p-3">
                 <DashboardCard tab="leads" compact footer={false} className="border-transparent" />
               </div>
             </Card>
@@ -380,10 +396,12 @@ export default function Services() {
 
           {/* 5 — Brand strategy (tinted full width) */}
           <Card className="bg-[linear-gradient(120deg,#f8efe9_0%,#fbf2eb_55%,#fff0e8_100%)] p-4 sm:p-8 lg:p-10">
-            <div className="grid min-w-0 items-center gap-6 sm:gap-8 lg:grid-cols-[5fr_7fr] lg:gap-10">
+            <Photo src={img.about} alt="" className="pointer-events-none absolute inset-0 size-full opacity-75" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#fff5ed]/95 via-[#fff5ed]/65 to-white/25" />
+            <div className="relative grid min-w-0 items-center gap-6 sm:gap-8 lg:grid-cols-[5fr_7fr] lg:gap-10">
               <div className="min-w-0">
-                <Tag tone="light">Brand strategy</Tag>
-                <h3 className="h-abc mt-3.5 sm:mt-6 text-[22px] xs:text-[24px] sm:text-[32px] lg:text-[38px] break-words">A brand that earns the shortlist.</h3>
+                <h3 className="font-abc text-[28px] font-semibold leading-tight text-ink-navy sm:text-[36px]">Brand strategy</h3>
+                <p className="mt-3 font-abc text-[20px] font-medium leading-snug text-charcoal sm:text-[25px]">A brand that earns the shortlist.</p>
                 <p className="mt-2.5 sm:mt-4 max-w-[440px] text-[14px] sm:text-[16px] leading-[1.6] text-graphite/75">
                   Authority and positioning, from brand identity to campaign creative, video and thought-leadership
                   content — so buyers trust you before the first call.

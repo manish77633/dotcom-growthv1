@@ -12,6 +12,8 @@ const cases = [
     title: "How we digitally transformed the operations of a real estate group",
     src: img.caseRealEstate,
     alt: "Modern residential building facade with glass balconies",
+    metric: "360°",
+    metricLabel: "operational view",
     kv: [
       ["Delivery", "Dual-tech stack, 360°"],
       ["Focus", "Operations"],
@@ -22,6 +24,8 @@ const cases = [
     title: "How we took an e-commerce brand to €1M in revenue in under 12 months",
     src: img.caseEcom,
     alt: "Woman carrying parcels at home",
+    metric: "€1M",
+    metricLabel: "revenue in under 12 months",
     kv: [
       ["Revenue", "€1M"],
       ["Timeline", "Under 12 months"],
@@ -111,6 +115,13 @@ export default function CaseStudies() {
                   ))}
                 </div>
 
+                <div>
+                  {c.metric && (
+                    <div className="mb-4 inline-flex max-w-full flex-col rounded-xl border border-white/30 bg-ink-navy/75 px-4 py-2.5 shadow-lg backdrop-blur-sm">
+                      <span className="font-abc text-3xl font-bold leading-none tracking-tight text-white sm:text-4xl">{c.metric}</span>
+                      <span className="mt-1 text-xs font-medium text-white/85">{c.metricLabel}</span>
+                    </div>
+                  )}
                 <h3
                   className={cn(
                     "font-serif font-normal tracking-[-0.02em] text-white",
@@ -121,6 +132,7 @@ export default function CaseStudies() {
                 >
                   {c.title}
                 </h3>
+                </div>
 
                 <div className="rounded-xl bg-white p-3.5 sm:p-4 text-charcoal">
                   <div className="flex items-end justify-between gap-3">
@@ -128,7 +140,7 @@ export default function CaseStudies() {
                       {c.kv.map(([k, v]) => (
                         <div key={k}>
                           <dt className="text-[9.5px] sm:text-[10px] font-bold uppercase tracking-[0.12em] text-stone">{k}</dt>
-                          <dd className="text-[13px] sm:text-[14px] font-medium leading-snug text-ink-navy">{v}</dd>
+                          <dd className={cn("font-abc font-semibold leading-snug text-ink-navy", /[0-9€%]/.test(v) ? "text-[17px] sm:text-[21px]" : "text-[13px] sm:text-[14px]")}>{v}</dd>
                         </div>
                       ))}
                     </dl>

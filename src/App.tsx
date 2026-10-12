@@ -13,6 +13,8 @@ import FAQ from "./components/FAQ";
 import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
 import ChatWidget from "./components/ChatWidget";
+import BackToTop from "./components/BackToTop";
+import SectionRail from "./components/SectionRail";
 import { LogoStrip } from "./components/ui";
 import { SectionTexture } from "./components/MotionLayer";
 import { brandsPrimary } from "./data";
@@ -43,6 +45,8 @@ export default function App() {
       </main>
       <Footer />
       <ChatWidget />
+      <BackToTop />
+      <SectionRail />
     </div>
   );
 }

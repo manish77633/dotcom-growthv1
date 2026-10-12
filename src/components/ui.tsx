@@ -169,10 +169,10 @@ export function SectionHead({
   }
   return (
     <div className={cn("flex flex-col gap-5 sm:gap-6 md:flex-row md:items-end md:justify-between", className)}>
-      <div className="max-w-[760px]">
+      <div className="min-w-0 max-w-[760px] flex-1">
         <Reveal distance={12}><div className="eyebrow">{eyebrow}</div></Reveal>
         <Reveal delay={0.08} distance={32}>
-          <h2 className="h-display mt-4 sm:mt-5 text-[28px] xs:text-[32px] sm:text-[42px] lg:text-[52px] leading-[1.12] sm:leading-[1.04]">{title}</h2>
+          <h2 className="h-display mt-4 sm:mt-5 text-[28px] xs:text-[32px] sm:text-[42px] lg:text-[52px] leading-[1.16] sm:leading-[1.12]">{title}</h2>
         </Reveal>
         {sub && (
           <Reveal delay={0.18} distance={16}>

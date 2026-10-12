@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight, Menu, PhoneCall, X } from "lucide-react";
 import { Button, Logo } from "./ui";
 import { cn } from "../utils/cn";
 
@@ -64,9 +64,17 @@ export default function Header() {
             </nav>
           </div>
           <div className="hidden items-center gap-2 lg:flex">
-            <Button variant="ghost" size="sm" href="tel:+919588207166">
-              +91 95882 07166
-            </Button>
+            <a
+              href="tel:+919588207166"
+              aria-label="Call DotCom Growth at +91 95882 07166"
+              className="group relative inline-flex h-10 items-center gap-2.5 overflow-hidden rounded-full border border-ink-navy/15 bg-white/85 px-3.5 font-abc text-[13px] font-semibold text-ink-navy shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-electric-cobalt hover:shadow-[0_8px_24px_rgba(255,94,26,0.16)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric-cobalt"
+            >
+              <span className="relative flex size-6 shrink-0 items-center justify-center rounded-full bg-electric-cobalt text-white">
+                <span className="absolute inset-0 rounded-full bg-electric-cobalt/55 motion-safe:animate-ping" />
+                <PhoneCall aria-hidden="true" className="relative size-3.5 transition-transform duration-300 group-hover:rotate-[-18deg]" />
+              </span>
+              Call Us
+            </a>
             <Button size="sm" href="#contact">
               Get Started
             </Button>
