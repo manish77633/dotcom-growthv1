@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+/* The supplied footer artwork stays static behind the interactive text. */
+.footer-photo-bg {
+  background: #071431 url('/images/footer-midnight-waves.png') center bottom / cover no-repeat;
+}
+@media (max-width: 640px) {
+  .footer-photo-bg { background-position: 22% bottom; }
+}
+
 /* Existing type system and layout styles; motion CSS is in index.html. */
 @font-face {
   font-family: "Inter";
