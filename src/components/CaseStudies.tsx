@@ -83,7 +83,7 @@ export default function CaseStudies() {
       <div className="relative mt-14">
         <div
           ref={scroller}
-          className="hide-scrollbar flex snap-x gap-4 overflow-x-auto pb-2"
+          className="hide-scrollbar flex snap-x gap-4 overflow-x-auto overflow-y-hidden pb-2"
           style={{
             paddingLeft: "max(24px, calc((100vw - 1200px) / 2))",
             paddingRight: "max(24px, calc((100vw - 1200px) / 2))",

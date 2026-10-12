@@ -18,6 +18,7 @@ const sections = [
 
 export default function SectionRail() {
   const [active, setActive] = useState<string>("home");
+  const [overCaseStudies, setOverCaseStudies] = useState(false);
 
   useEffect(() => {
     let frame = 0;
@@ -31,6 +32,11 @@ export default function SectionRail() {
           if (el && el.getBoundingClientRect().top <= threshold) current = id;
         }
         setActive(current);
+        const caseSection = document.getElementById("case-studies");
+        if (caseSection) {
+          const bounds = caseSection.getBoundingClientRect();
+          setOverCaseStudies(bounds.top < window.innerHeight * 0.8 && bounds.bottom > window.innerHeight * 0.2);
+        }
       });
     };
     update();
@@ -44,7 +50,7 @@ export default function SectionRail() {
   }, []);
 
   return (
-    <nav aria-label="Jump to section" className="fixed right-4 top-1/2 z-40 hidden -translate-y-1/2 flex-col min-[1360px]:flex 2xl:right-8">
+    <nav aria-label="Jump to section" className={cn("fixed right-4 top-1/2 z-40 hidden -translate-y-1/2 flex-col transition-opacity duration-200 min-[1360px]:flex 2xl:right-8", overCaseStudies && "pointer-events-none opacity-0")}>
       {sections.map(([id, label]) => {
         const selected = active === id;
         return (
